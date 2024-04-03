@@ -125,12 +125,14 @@ const GetQuestionForm = () => {
                   <FormLabel>Number of Questions</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Maths, Arts, History, etc."
+                      placeholder="5, 10, 20, etc."
                       {...field}
                       className="w-[25vw]"
                     />
                   </FormControl>
-                  <FormDescription>Enter the Number of Total Questions in Question Paper.</FormDescription>
+                  <FormDescription>
+                    Enter the Number of Total Questions in Question Paper.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -143,12 +145,14 @@ const GetQuestionForm = () => {
                   <FormLabel>Maximum Marks</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Maths, Arts, History, etc."
+                      placeholder="20, 50, 100, etc."
                       {...field}
                       className="w-[25vw]"
                     />
                   </FormControl>
-                  <FormDescription>Enter Maximum Marks for the Question Paper.</FormDescription>
+                  <FormDescription>
+                    Enter Maximum Marks for the Question Paper.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
