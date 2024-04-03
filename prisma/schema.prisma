@@ -17,6 +17,11 @@ enum Role {
   USER
   VERIFIED_USER
 }
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
 
 model Profile {
   id         String   @id @default(uuid())
@@ -41,7 +46,7 @@ model Question {
   id          String  @id @default(uuid())
   description String
   imageUrl    String
-  difficulty  Int
+  difficulty  Difficulty
   profileId   String
   subjectId   String
   profile     Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
