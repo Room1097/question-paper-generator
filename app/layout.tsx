@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider"
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import UserSideBar from "@/components/UserSidebar/userSideBar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,22 +19,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="h-full">
-              <div className="h-full w-72 fixed inset-y-0 flex flex-col z-30">
-                <UserSideBar/>
-              </div>
-            <main className="h-full">
-            {children}
-            </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="h-full">
+            <div className="h-full w-72 fixed inset-y-0 flex flex-col z-30">
+              <UserSideBar />
             </div>
-          </ThemeProvider>
-          </body>
+            <main className="h-full">{children}</main>
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
