@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import Provider from "@/components/SignIn/Provider";
 
 import UserSideBar from "@/components/UserSidebar/userSideBar";
+import Login from "@/components/LoginCard/Login";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,10 +35,8 @@ export default function RootLayout({
           
 
           <div className="h-full">
-            <div className="h-full w-72 fixed inset-y-0 flex flex-col z-30">
-              <UserSideBar />
-            </div>
-            <main className="h-full"> <Provider >{children}</Provider></main>
+            
+            <main className="h-full"> <Provider ><Login/>{children}</Provider></main>
           </div>
 
         </ThemeProvider>

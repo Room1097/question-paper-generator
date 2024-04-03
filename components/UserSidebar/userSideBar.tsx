@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 
 const UserSideBar = () => {
     const router = useRouter()
-    
+
   return (
     <div className='h-full w-full bg-zinc-300 dark:bg-zinc-950'>
         <div className=' w-full h-24 flex justify-center items-center'>
@@ -17,7 +17,7 @@ const UserSideBar = () => {
         <div className=' h-[34rem]'>
             <div className='flex flex-col gap-y-3'>
 
-            <Button onClick={()=>{router.push("/")}} variant="ghost" className='w-full text-md active:scale-95'>
+            <Button onClick={()=>{router.push("/questionPaperGen")}} variant="ghost" className='w-full text-md active:scale-95'>
                 Make a Paper
             </Button>
             <Button onClick={()=>{router.push("/question")}} variant="ghost" className='w-full text-md active:scale-95'>
