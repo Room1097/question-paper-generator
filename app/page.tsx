@@ -9,11 +9,15 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center w-full h-screen">
-      {/* <h1>Hello World!</h1> */}
+    <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
+      <h1 className="text-3xl w-full text-left pl-[20rem]">
+        Make Question Paper
+      </h1>
+      <Separator />
       <div>
         <Card className="w-[60vw] rounded-sm">
           <CardHeader>

@@ -7,11 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export default function Admin() {
   return (
-    <div className="flex justify-center items-center w-full h-screen">
-      {/* <h1>Hello World!</h1> */}
+    <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
+      <h1 className="text-3xl w-full text-left pl-[20rem]">
+        Add Questions Page
+      </h1>
+      <Separator />
       <div>
         <Card className="w-[60vw] rounded-sm">
           <CardHeader>
