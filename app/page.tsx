@@ -9,12 +9,14 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+
 export default function Home() {
+  
   return (
     <div>
       <h1>Hello World!</h1>
       <div>
-        <Card className="w-[60vw] rounded-xl">
+        <Card className="w-[60vw] rounded-sm">
           <CardHeader>
             <CardTitle>Select Questions</CardTitle>
             <CardDescription>
