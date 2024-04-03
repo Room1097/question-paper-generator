@@ -1,4 +1,4 @@
-import GetQuestionForm from "@/components/GetQuestionForm/getQuestionForm";
+import AddQuestionForm from "@/components/AddQuestionForm/addQuestionForm";
 import {
   Card,
   CardContent,
@@ -7,24 +7,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
-
-export default function Home() {
-  
+export default function Admin() {
   return (
     <div className="flex justify-center items-center w-full h-screen">
       {/* <h1>Hello World!</h1> */}
       <div>
         <Card className="w-[60vw] rounded-sm">
           <CardHeader>
-            <CardTitle>Select Questions</CardTitle>
+            <CardTitle>Add Question</CardTitle>
             <CardDescription>
-              Select your Questions by Inserting all the fields.
+              Add a Question by filling the given fields.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <GetQuestionForm />
+            <AddQuestionForm />
           </CardContent>
         </Card>
       </div>
