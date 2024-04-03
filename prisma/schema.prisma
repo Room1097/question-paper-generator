@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  VERIFIED_USER
+}
+
+model Profile {
+  id         String   @id @default(uuid())
+  userId     String   @unique
+  name       String
+  imageUrl   String
+  email      String
+  role       Role     @default(USER)
+  createdAt  DateTime @default(now())
+  upadatedAt DateTime @updatedAt
+
+  questions Question[]
+}
+
+model Subject {
+  id        String     @id @default(uuid())
+  name      String
+  questions Question[]
+}
+
+model Question {
+  id          String  @id @default(uuid())
+  description String
+  imageUrl    String
+  difficulty  Int
+  profileId   String
+  subjectId   String
+  profile     Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  subject     Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@index([subjectId])
+}
