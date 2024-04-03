@@ -8,7 +8,7 @@ const ViewQuestions = () => {
   const [data, setData] = useState<QuestionType[]>([]);
 
   return (
-    <div>
+    <div className="w-[60vw]">
       <DataTable columns={columns} data={data} />
     </div>
   );

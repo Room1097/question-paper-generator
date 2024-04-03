@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+
 import Provider from "@/components/SignIn/Provider";
+
+import UserSideBar from "@/components/UserSidebar/userSideBar";
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,8 +29,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Provider >{children}</Provider>
+
+         
           
+
+          <div className="h-full">
+            <div className="h-full w-72 fixed inset-y-0 flex flex-col z-30">
+              <UserSideBar />
+            </div>
+            <main className="h-full"> <Provider >{children}</Provider></main>
+          </div>
+
         </ThemeProvider>
       </body>
     </html>
