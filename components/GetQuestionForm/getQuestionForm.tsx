@@ -43,7 +43,12 @@ const GetQuestionForm = () => {
 
   function onSubmit(values: z.infer<typeof getQuestionSchema>) {
     console.log(values);
+    form.reset();
   }
+
+  const handleCancel = () => {
+    form.reset();
+  };
 
   return (
     <div>
@@ -157,6 +162,17 @@ const GetQuestionForm = () => {
                 </FormItem>
               )}
             />
+          </div>
+          <div className="flex justify-between">
+            <Button className="active:scale-95 rounded-[0.5rem]">Submit</Button>
+            <Button
+              onClick={handleCancel}
+              type="reset"
+              variant="destructive"
+              className="active:scale-95 rounded-[0.5rem]"
+            >
+              Cancel
+            </Button>
           </div>
         </form>
       </Form>

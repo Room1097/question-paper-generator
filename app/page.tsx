@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <h1>Hello World!</h1>
       <div>
-        <Card className="w-[60vw]">
+        <Card className="w-[60vw] rounded-xl">
           <CardHeader>
             <CardTitle>Select Questions</CardTitle>
             <CardDescription>
@@ -24,10 +24,6 @@ export default function Home() {
           <CardContent>
             <GetQuestionForm />
           </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button variant="outline">Submit</Button>
-            <Button variant="outline">Cancel</Button>
-          </CardFooter>
         </Card>
       </div>
     </div>
