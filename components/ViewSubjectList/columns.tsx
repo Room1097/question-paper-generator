@@ -12,7 +12,7 @@ export const columns: ColumnDef<SubjectType>[] = [
     header: "ID",
   },
   {
-    accessorKey: "subject",
+    accessorKey: "name",
     header: "Subject Name",
   },
   

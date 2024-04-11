@@ -4,12 +4,13 @@ import React, { useState, useEffect } from "react";
 import { SubjectType, columns } from "./columns";
 import { DataTable } from "./data-table";
 
+import Subjects from "../../app/(viewquestions)/_components/sample.subjectDB.json";
+
 const ViewSubjectTable = () => {
-  const [data, setData] = useState<SubjectType[]>([]);
 
   return (
     <div className="w-[40vw]">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={Subjects} />
     </div>
   );
 };

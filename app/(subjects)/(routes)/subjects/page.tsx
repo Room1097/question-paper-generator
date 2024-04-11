@@ -17,7 +17,7 @@ export default function Subjects() {
         Subjects Page
       </h1>
       <Separator />
-      <h1 className="text-xl w-full text-left pl-[20rem]">Add a Subject</h1>
+      <h1 className="text-xl w-full text-left pl-[25rem]">Add a Subject</h1>
       <div>
         <Card className="w-[40vw] rounded-sm">
           <CardHeader>
@@ -32,7 +32,7 @@ export default function Subjects() {
         </Card>
       </div>
       <Separator />
-      <h1 className="text-xl w-full text-left pl-[20rem]">Subject List</h1>
+      <h1 className="text-xl w-full text-left pl-[25rem]">Subject List</h1>
       <div>
         <ViewSubjectTable />
       </div>
