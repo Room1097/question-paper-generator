@@ -10,7 +10,7 @@ import {
 
 const ViewQuestionCard: React.FC<{subject: string, difficulty: string, question: string, marks: number}> = ({subject, difficulty, question, marks}) => {
   return (
-    <Card className="w-[20vw]">
+    <Card className="w-[28vw]">
       <CardHeader>
         <CardTitle>{subject}</CardTitle>
         <CardDescription>Difficulty: <span className="capitalize">{difficulty}</span></CardDescription>
