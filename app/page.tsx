@@ -33,13 +33,13 @@ export default function Home() {
             <div className="flex justify-between w-full">
               <Link
                 href={"/question"}
-                className="text-sm underline text-zinc-400"
+                className="text-sm underline hover:cursor active:scale-95 dark:text-zinc-400 text-zinc-700"
               >
                 Running out of Questions? Click Here!
               </Link>
               <Link
                 href={"/viewquestions"}
-                className="text-sm underline text-zinc-400"
+                className="text-sm underline hover:cursor active:scale-95 dark:text-zinc-400 text-zinc-700"
               >
                 See Questions Here!
               </Link>
