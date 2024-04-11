@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "question": "What is the value of 2 + 2?",
+    "marks": 2,
+    "difficulty": "easy",
+    "subject": "Maths",
+    "privacy": "private"
+  },
+  {
+    "id": 2,
+    "question": "What is the capital of France?",
+    "marks": 3,
+    "difficulty": "medium",
+    "subject": "Geography",
+    "privacy": "public"
+  },
+  {
+    "id": 3,
+    "question": "Define the term 'Photosynthesis'.",
+    "marks": 5,
+    "difficulty": "medium",
+    "subject": "Biology",
+    "privacy": "public"
+  },
+  {
+    "id": 4,
+    "question": "Solve for x: 3x + 5 = 17.",
+    "marks": 3,
+    "difficulty": "medium",
+    "subject": "Maths",
+    "privacy": "public"
+  },
+  {
+    "id": 5,
+    "question": "What is the formula for the area of a rectangle?",
+    "marks": 2,
+    "difficulty": "easy",
+    "subject": "Maths",
+    "privacy": "private"
+  },
+  {
+    "id": 6,
+    "question": "Explain the Law of Supply and Demand.",
+    "marks": 8,
+    "difficulty": "hard",
+    "subject": "Economics",
+    "privacy": "public"
+  },
+  {
+    "id": 7,
+    "question": "What is the atomic number of Oxygen?",
+    "marks": 1,
+    "difficulty": "easy",
+    "subject": "Chemistry",
+    "privacy": "public"
+  },
+  {
+    "id": 8,
+    "question": "What is the formula for calculating compound interest?",
+    "marks": 3,
+    "difficulty": "medium",
+    "subject": "Maths",
+    "privacy": "public"
+  },
+  {
+    "id": 9,
+    "question": "Who wrote 'To Kill a Mockingbird'?",
+    "marks": 2,
+    "difficulty": "easy",
+    "subject": "Literature",
+    "privacy": "private"
+  },
+  {
+    "id": 10,
+    "question": "What is the formula for acceleration?",
+    "marks": 4,
+    "difficulty": "medium",
+    "subject": "Physics",
+    "privacy": "public"
+  },
+  {
+    "id": 11,
+    "question": "What is the currency of Japan?",
+    "marks": 2,
+    "difficulty": "easy",
+    "subject": "Economics",
+    "privacy": "public"
+  },
+  {
+    "id": 12,
+    "question": "What is the formula for calculating net force?",
+    "marks": 5,
+    "difficulty": "medium",
+    "subject": "Physics",
+    "privacy": "public"
+  },
+  {
+    "id": 13,
+    "question": "Explain the concept of 'opportunity cost'.",
+    "marks": 6,
+    "difficulty": "medium",
+    "subject": "Economics",
+    "privacy": "public"
+  },
+  {
+    "id": 14,
+    "question": "What is the chemical symbol for Gold?",
+    "marks": 2,
+    "difficulty": "easy",
+    "subject": "Chemistry",
+    "privacy": "private"
+  },
+  {
+    "id": 15,
+    "question": "What is the formula for the volume of a cylinder?",
+    "marks": 3,
+    "difficulty": "medium",
+    "subject": "Maths",
+    "privacy": "public"
+  },
+  {
+    "id": 16,
+    "question": "Who discovered penicillin?",
+    "marks": 2,
+    "difficulty": "easy",
+    "subject": "Biology",
+    "privacy": "private"
+  },
+  {
+    "id": 17,
+    "question": "Explain the Pythagorean theorem.",
+    "marks": 4,
+    "difficulty": "medium",
+    "subject": "Maths",
+    "privacy": "public"
+  },
+  {
+    "id": 18,
+    "question": "What is the formula for Ohm's Law?",
+    "marks": 5,
+    "difficulty": "medium",
+    "subject": "Physics",
+    "privacy": "public"
+  },
+  {
+    "id": 19,
+    "question": "Who painted the Mona Lisa?",
+    "marks": 3,
+    "difficulty": "easy",
+    "subject": "Art",
+    "privacy": "private"
+  },
+  {
+    "id": 20,
+    "question":"What is the formula for finding the hypotenuse of a right triangle?",
+    "marks": 4,
+"difficulty": "medium",
+    "subject": "Maths",
+    "privacy": "public"
+  }
+]
