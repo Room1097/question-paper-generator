@@ -12,11 +12,11 @@ const ViewQuestionCard: React.FC<{subject: string, difficulty: string, question:
   return (
     <Card className="w-[28vw]">
       <CardHeader>
-        <CardTitle>{subject}</CardTitle>
-        <CardDescription>Difficulty: <span className="capitalize">{difficulty}</span></CardDescription>
+        <CardTitle>{difficulty.toUpperCase()}</CardTitle>
+        <CardDescription>Subject: <span className="capitalize">{subject}</span></CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{question}</p>
+        <p className="text-lg">{question}</p>
       </CardContent>
       <CardFooter><span className="text-zinc-400 text-sm">Marks: {marks}</span></CardFooter>
     </Card>
