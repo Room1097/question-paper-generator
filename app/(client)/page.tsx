@@ -12,6 +12,7 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
+
   return (
     <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
       <h1 className="text-3xl w-full text-left pl-[20rem]">

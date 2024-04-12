@@ -1,4 +1,4 @@
-import Login from "@/components/LoginCard/Login";
+import Login from "@/components/LoginCard/profile";
 import LoginCard from "@/components/LoginCard/loginCard";
 
 export default function Admin() {

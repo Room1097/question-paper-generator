@@ -32,14 +32,9 @@ export default function RootLayout({
 
          
           
-
-          <div className="h-full">
-            <div className="h-full w-72 fixed inset-y-0 flex flex-col z-30">
-              <UserSideBar />
-            </div>
-            <main className="h-full"> <Provider >{children}</Provider></main>
-          </div>
-
+<Provider >
+          {children}
+          </Provider>
         </ThemeProvider>
       </body>
     </html>

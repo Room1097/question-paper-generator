@@ -4,6 +4,9 @@ import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
 import { ModeToggle } from '../ModeToggle/ModeToggle'
 import { useRouter } from 'next/navigation'
+import Login from '../LoginCard/profile'
+import { signOut } from 'next-auth/react'
+import Profile from '../LoginCard/profile'
 
 const UserSideBar = () => {
     const router = useRouter()
@@ -12,8 +15,11 @@ const UserSideBar = () => {
     <div className='h-full w-full bg-zinc-300 dark:bg-zinc-950'>
         <div className=' w-full h-24 flex justify-center items-center'>
             <h2 className='text-3xl'>Q.P.G</h2>
+            
         </div>
+        
         <Separator className='dark:bg-zinc-400 bg-zinc-700 w-11/12 mx-auto mb-6'/>
+        
         <div className=' h-[34rem]'>
             <div className='flex flex-col gap-y-3'>
 
@@ -29,12 +35,17 @@ const UserSideBar = () => {
             <Button onClick={()=>{router.push("/viewquestions")}} variant="ghost" className='w-full text-md active:scale-95'>
                 View Question
             </Button>
+            
             </div>
+            <Button onClick={()=>signOut()} variant="ghost" className='w-full text-md active:scale-95'>Sign Out</Button>
         </div>
+        <Profile/>
         <Separator className='dark:bg-zinc-400 bg-zinc-700 w-11/12 mx-auto mb-6'/>
+        
         <div className='flex flex-col items-center justify-center'>
             <ModeToggle/>
         </div>
+        
     </div>
   )
 } 

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { SubjectType, columns } from "./columns";
 import { DataTable } from "./data-table";
 
-import Subjects from "../../app/(viewquestions)/_components/sample.subjectDB.json";
+import Subjects from "@/app/(client)/(viewquestions)/_components/sample.subjectDB.json";
 
 const ViewSubjectTable = () => {
 

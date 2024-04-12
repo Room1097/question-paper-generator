@@ -1,4 +1,4 @@
-import Questions from '../app/(viewquestions)/_components/sample.questionDB.json';
+import Questions from '@/app/(client)/(viewquestions)/_components/sample.questionDB.json';
 import { z } from 'zod';
 
 const getQuestionSchema = z.object({
