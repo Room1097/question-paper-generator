@@ -5,30 +5,18 @@
     },
     {
         "id": 2,
-        "name": "Geography"
+        "name": "DBMS"
     },
     {
         "id": 3,
-        "name": "Biology"
+        "name": "Data Structures and Algorithms"
     },
     {
         "id": 4,
-        "name": "Economics"
+        "name": "C Programming"
     },
     {
         "id": 5,
-        "name": "Chemistry"
-    },
-    {
-        "id": 6,
-        "name": "Literature"
-    },
-    {
-        "id": 7,
-        "name": "Physics"
-    },
-    {
-        "id": 8,
-        "name": "Art"
+        "name": "Digital Logic Design"
     }
 ]

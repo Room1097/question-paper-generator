@@ -16,15 +16,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { generateRandomQuestionSet } from "@/app/actions";
 
 const GetQuestionForm = () => {
   const getQuestionSchema = z.object({
     subject: z.string().min(2).max(20),
-    easy: z.string().min(1).max(3),
-    medium: z.string().min(1).max(3),
-    hard: z.string().min(1).max(3),
-    numberOfQuestions: z.string().min(1).max(2),
-    maxMarks: z.string().min(1).max(3),
+    easy: z.coerce.number().nonnegative().min(0).max(100),
+    medium: z.coerce.number().nonnegative().min(0).max(100),
+    hard: z.coerce.number().nonnegative().min(0).max(100),
+    numberOfQuestions: z.coerce.number().nonnegative().min(0).max(100),
+    maxMarks: z.coerce.number().nonnegative().min(0).max(100),
   });
 
   type getQuestionType = z.infer<typeof getQuestionSchema>;
@@ -33,11 +34,11 @@ const GetQuestionForm = () => {
     resolver: zodResolver(getQuestionSchema),
     defaultValues: {
       subject: "",
-      easy: "",
-      medium: "",
-      hard: "",
-      numberOfQuestions: "",
-      maxMarks: "",
+      easy: 0,
+      medium: 0,
+      hard: 0,
+      numberOfQuestions: 0,
+      maxMarks: 0,
     },
   });
 
@@ -53,7 +54,7 @@ const GetQuestionForm = () => {
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form action={generateRandomQuestionSet} className="space-y-8">
           <FormField
             control={form.control}
             name="subject"
