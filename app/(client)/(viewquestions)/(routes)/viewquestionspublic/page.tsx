@@ -18,8 +18,7 @@ export default async function Admin() {
 
   const questions = await prisma.question.findMany({
     where:{
-       //@ts-expect-error
-      profileId:currUser.id
+      isPrivate:false
     }
   })
   const subjects = await prisma.subject.findMany();

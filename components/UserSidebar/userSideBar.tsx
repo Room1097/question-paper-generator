@@ -35,7 +35,9 @@ const UserSideBar = () => {
             <Button onClick={()=>{router.push("/viewquestions")}} variant="ghost" className='w-full text-md active:scale-95'>
                 View Question
             </Button>
-            
+            <Button onClick={()=>{router.push("/viewquestionspublic")}} variant="ghost" className='w-full text-md active:scale-95'>
+                View public Question
+            </Button>
             </div>
             <Button onClick={()=>signOut()} variant="ghost" className='w-full text-md active:scale-95'>Sign Out</Button>
         </div>

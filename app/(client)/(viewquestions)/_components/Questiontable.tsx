@@ -1,7 +1,8 @@
+'use client'
 import ViewQuestions from "@/components/ViewQuestions/viewQuestions";
-import ViewQuestionCard from "../../_components/ViewQuestionCard";
-import QuestionDB from "../../_components/sample.questionDB.json";
-import Subjects from "../../_components/sample.subjectDB.json";
+import ViewQuestionCard from "./ViewQuestionCard";
+import QuestionDB from "./sample.questionDB.json";
+import Subjects from "./sample.subjectDB.json";
 import { Separator } from "@/components/ui/separator";
 import { currProfile } from "@/lib/current-profile";
 import { useSession } from "next-auth/react";
@@ -10,8 +11,8 @@ import { getServerSession } from "next-auth";
 
 export default async function Admin() {
   console.log("hello")
-  const session  = getServerSession();
-    //@ts-expect-error
+  const {data : session } = useSession();
+
     const currUser = currProfile(session)
     
 
@@ -22,9 +23,8 @@ export default async function Admin() {
       profileId:currUser.id
     }
   })
-  const subjects = await prisma.subject.findMany();
+  
   console.log(questions)
-  console.log(subjects)
   return (
     <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
       <h1 className="text-4xl font-bold w-full text-left pl-[17rem]">

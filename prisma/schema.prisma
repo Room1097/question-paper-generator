@@ -44,6 +44,7 @@ model Question {
   imageUrl    String
   difficulty  Difficulty
   profileId   String
+  marks Int
   subjectId   String
   isPrivate   Boolean
   profile     Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)

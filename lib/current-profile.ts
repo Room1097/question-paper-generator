@@ -3,7 +3,7 @@ import { Session } from "next-auth";
 import { prisma } from "./prisma";
 
 export async function currProfile(session:Session){
-
+//@ts-expect-error
    const {name,email,image} = session?.user;
 
 
@@ -16,7 +16,7 @@ export async function currProfile(session:Session){
     
    }
    catch{
-    return await prisma.profile.create({
+    const newProfile = await prisma.profile.create({
         data: { 
             userId  : crypto.randomUUID() ,
             name     :  name,
@@ -24,6 +24,7 @@ export async function currProfile(session:Session){
             email: email
           
         },
+        
       })
    }
 }
