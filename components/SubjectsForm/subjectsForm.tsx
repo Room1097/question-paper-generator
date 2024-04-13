@@ -31,6 +31,7 @@ const SubjectsForm = () => {
     },
   });
 
+
   async function onSubmit(values: z.infer<typeof subjectSchema>) {
     try {
       await axios.post("/api/subject", values);
