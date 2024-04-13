@@ -12,14 +12,22 @@ export default async function Admin() {
   console.log("hello")
   const session  = getServerSession();
     //@ts-expect-error
-    const currUser = currProfile(session)
     
+    const currUser = await currProfile(session).then(
+      (result)=>{
+        console.log(result)
+        return result;
+      },
+      (err)=>{
+        console.log(err)
+      }
+    );
 
 
   const questions = await prisma.question.findMany({
     where:{
-       //@ts-expect-error
-      profileId:currUser.id
+       // @ts-expect-error
+      profileId:currUser!.id
     }
   })
   const subjects = await prisma.subject.findMany();
@@ -57,3 +65,4 @@ export default async function Admin() {
     </div>
   );
 }
+
