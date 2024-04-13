@@ -11,12 +11,16 @@ import { Separator } from "@/components/ui/separator";
 import { currProfile } from "@/lib/current-profile";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
+import { SubjectType } from "@/components/AddQuestionForm/addQuestionForm";
+
 
 export default async function Admin() {
   const session  = getServerSession();
     //@ts-expect-error
     const currUser = currProfile(session)
     const subjects = await prisma.subject.findMany();
+    // subjects: JSON.parse(JSON.stringify(subjects))
+
   return (
     <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
       <h1 className="text-3xl w-full text-left pl-[20rem]">

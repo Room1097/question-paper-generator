@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import axios from "axios";
+import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,34 +19,40 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
-const formSchema = z.object({
-  question: z.string().min(2).max(1000),
-  subjectId: z.string(),
-  difficulty: z.enum(["EASY", "HARD", "MEDIUM"]),
-  marks: z.string().min(1).max(2),
-});
+// Define type for subjects
+export type SubjectType = {
+  id: string;
+  name: string;
+};
 
-export default function AddQuestionForm(subjects : any) {
+export default function AddQuestionForm({ subjects }: { subjects: SubjectType[] }) {
+  const formSchema = z.object({
+    description: z.string().min(2).max(1000),
+    subjectId: z.string(),
+    difficulty: z.enum(["EASY", "HARD", "MEDIUM"]),
+    marks: z.coerce.number().nonnegative(),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      question: "",
+      description: "",
       subjectId: "",
       difficulty: "EASY",
-      marks: "",
+      marks: 0,
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await axios.post("/api/question",values)
+      console.log(values)
+      await axios.post("/api/question", values);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     form.reset();
   }
@@ -59,7 +66,7 @@ export default function AddQuestionForm(subjects : any) {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="question"
+          name="description"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Question</FormLabel>
@@ -82,11 +89,23 @@ export default function AddQuestionForm(subjects : any) {
               <FormItem>
                 <FormLabel>Subject</FormLabel>
                 <FormControl>
-                  <Input
-                    {...field}
-                    placeholder="Subject"
-                    className="w-[15vw]"
-                  />
+                  <div className="w-[15vw]">
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a Subject." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {subjects.map((item: SubjectType) => (
+                          <SelectItem key={item.id} value={item.id}>
+                            {item.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,9 +144,9 @@ export default function AddQuestionForm(subjects : any) {
                         <SelectValue placeholder="Select a difficulty." />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="easy">Easy</SelectItem>
-                        <SelectItem value="medium">Medium</SelectItem>
-                        <SelectItem value="hard">Hard</SelectItem>
+                        <SelectItem value="EASY">Easy</SelectItem>
+                        <SelectItem value="MEDIUM">Medium</SelectItem>
+                        <SelectItem value="HARD">Hard</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

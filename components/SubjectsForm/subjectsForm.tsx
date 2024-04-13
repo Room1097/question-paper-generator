@@ -33,11 +33,11 @@ const SubjectsForm = () => {
 
   async function onSubmit(values: z.infer<typeof subjectSchema>) {
     try {
-      await axios.post("/api/subject",values)
-      form.reset()
-      redirect('/viewquestion')
+      await axios.post("/api/subject", values);
+      form.reset();
+      redirect("/viewquestion");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   return (

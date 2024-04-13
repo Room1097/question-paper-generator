@@ -5,19 +5,21 @@ import { NextResponse } from "next/server";
 
 export async function POST(Request : Request) {
     try {
-        const {description,subjectId,difficulty,marks} = await Request.json();
+        const req = await Request.json();
         const session=getServerSession();
         //@ts-expect-error
         const profile = currProfile(session);
+        console.log(profile)
         const question = await prisma.question.create({
             data:{
                 //@ts-expect-error
                 profileId:profile.id,
-                description,
+            
+                description : req.description,
                 imageUrl:"",
-                subjectId,
-                difficulty,
-                marks,
+                subjectId : req.subjectId,
+                difficulty : req.difficulty,
+                marks : req.marks,
                 isPrivate:false
             }
         })
