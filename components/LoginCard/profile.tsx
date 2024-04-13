@@ -8,13 +8,7 @@ const Profile = ()=>{
     const{data:session } = useSession();
     
     if(session){
-        const currUser = currProfile(session).then(
-            function(result) {
-                console.log(result); 
-              }, function(err) {
-                console.log(err); 
-              }     
-        );
+
     
         const avatarUrl = session?.user?.image as string;
         return(
