@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -29,7 +29,11 @@ export type SubjectType = {
   name: string;
 };
 
-export default function AddQuestionForm({ subjects }: { subjects: SubjectType[] }) {
+export default function AddQuestionForm({
+  subjects,
+}: {
+  subjects: SubjectType[];
+}) {
   const formSchema = z.object({
     description: z.string().min(2).max(1000),
     subjectId: z.string(),
@@ -49,7 +53,7 @@ export default function AddQuestionForm({ subjects }: { subjects: SubjectType[] 
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values)
+      console.log(values);
       await axios.post("/api/question", values);
     } catch (error) {
       console.log(error);

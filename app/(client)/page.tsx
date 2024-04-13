@@ -10,8 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { prisma } from "@/lib/prisma";
 
-export default function Home() {
+
+
+export default async function Home() {
+
+  const subjects = await prisma.subject.findMany();
 
   return (
     <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
@@ -28,7 +33,7 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <GetQuestionForm />
+            <GetQuestionForm subjects={subjects}/>
           </CardContent>
           <CardFooter>
             <div className="flex justify-between w-full">

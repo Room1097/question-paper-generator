@@ -7,6 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Form,
   FormControl,
   FormDescription,
@@ -17,8 +24,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { generateRandomQuestionSet } from "@/app/actions";
+import { SubjectType } from "../ViewSubjectList/columns";
 
-const GetQuestionForm = () => {
+const GetQuestionForm = ({ subjects }: { subjects: SubjectType[] }) => {
   const getQuestionSchema = z.object({
     subject: z.string().min(2).max(20),
     easy: z.coerce.number().nonnegative().min(0).max(100),
@@ -62,7 +70,23 @@ const GetQuestionForm = () => {
               <FormItem>
                 <FormLabel>Subject</FormLabel>
                 <FormControl>
-                  <Input placeholder="Maths, Arts, History, etc." {...field} />
+                  <div className="w-[15vw]">
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a Subject." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {subjects.map((item: SubjectType) => (
+                          <SelectItem key={item.id} value={item.id}>
+                            {item.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </FormControl>
                 <FormDescription>Enter Subject Name</FormDescription>
                 <FormMessage />
