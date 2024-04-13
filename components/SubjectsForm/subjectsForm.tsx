@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 const SubjectsForm = () => {
   const form = useForm<z.infer<typeof subjectSchema>>({
@@ -33,6 +34,8 @@ const SubjectsForm = () => {
   async function onSubmit(values: z.infer<typeof subjectSchema>) {
     try {
       await axios.post("/api/subject",values)
+      form.reset()
+      redirect('/viewquestion')
     } catch (error) {
       console.log(error)
     }
