@@ -5,17 +5,16 @@ import { NextResponse } from "next/server";
 
 export async function POST(Request : Request) {
     try {
-        const {name} = await Request.json();
+        const req = await Request.json();
         const session=getServerSession();
         //@ts-expect-error
         const profile = currProfile(session);
-        const question = await prisma.question.create({
+        const subject = await prisma.subject.create({
             data:{
-                //@ts-expect-error
-                name
+                name : req.subject, 
             }
         })
-        return NextResponse.json(question)
+        return NextResponse.json(subject)
     } catch (error) {
         console.log("SERVERS_POST",error);
         return new NextResponse("Internal Error",{status:500});

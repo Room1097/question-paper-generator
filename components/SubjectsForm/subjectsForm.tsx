@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
 
 const SubjectsForm = () => {
   const form = useForm<z.infer<typeof subjectSchema>>({
@@ -29,8 +30,12 @@ const SubjectsForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof subjectSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof subjectSchema>) {
+    try {
+      await axios.post("/api/subject",values)
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <div>

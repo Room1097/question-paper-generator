@@ -25,18 +25,18 @@ import {
 
 const formSchema = z.object({
   question: z.string().min(2).max(1000),
-  subject: z.string().min(2).max(50),
-  difficulty: z.enum(["easy", "hard", "medium"]),
+  subjectId: z.string(),
+  difficulty: z.enum(["EASY", "HARD", "MEDIUM"]),
   marks: z.string().min(1).max(2),
 });
 
-export default function AddQuestionForm() {
+export default function AddQuestionForm(subjects : any) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       question: "",
-      subject: "",
-      difficulty: "easy",
+      subjectId: "",
+      difficulty: "EASY",
       marks: "",
     },
   });
@@ -77,7 +77,7 @@ export default function AddQuestionForm() {
         <div className="flex justify-between">
           <FormField
             control={form.control}
-            name="subject"
+            name="subjectId"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Subject</FormLabel>
