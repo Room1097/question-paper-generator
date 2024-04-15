@@ -12,7 +12,7 @@ export default async function Admin() {
   console.log("hello")
   const session  = getServerSession();
     //@ts-expect-error
-    const currUser = currProfile(session)
+    const currUser = await currProfile(session)
     
 
 

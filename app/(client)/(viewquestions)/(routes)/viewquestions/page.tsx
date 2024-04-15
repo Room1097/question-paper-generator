@@ -10,7 +10,11 @@ import { getServerSession } from "next-auth";
 
 export default async function Admin() {
   console.log("hello")
-  const session  = getServerSession();
+  const session  = getServerSession().then((result)=>{
+    return(result)
+  }).catch((err=>{
+    console.log(err)
+  }));
     //@ts-expect-error
     
     const currUser = await currProfile(session).then(
@@ -23,10 +27,10 @@ export default async function Admin() {
       }
     );
 
-
+    console.log(currUser)
   const questions = await prisma.question.findMany({
     where:{
-       // @ts-expect-error
+       
       profileId:currUser!.id
     }
   })

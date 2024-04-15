@@ -6,13 +6,24 @@ import { NextResponse } from "next/server";
 export async function POST(Request : Request) {
     try {
         const req = await Request.json();
-        const session=getServerSession();
+        const session=await getServerSession();
         //@ts-expect-error
-        const profile = currProfile(session);
-        console.log(profile)
+        const profile = await currProfile(session).then(
+            (result)=>{
+              console.log(result)
+              return result;
+            },
+            (err)=>{
+              console.log(err)
+            }
+          );
+          if (!profile){
+            return new NextResponse("Unauthorised",{status:400});
+          }
+        // console.log("Inside route.ts"+profile)
         const question = await prisma.question.create({
             data:{
-                //@ts-expect-error
+                
                 profileId:profile.id,
             
                 description : req.description,

@@ -5,15 +5,16 @@ import { prisma } from "./prisma";
 export async function currProfile(session:Session){
 
    const user = session?.user;
-
+    
 
    try{
-    return await prisma.profile.findFirstOrThrow({
+    const Profile = await prisma.profile.findUniqueOrThrow({
         where:{
             email: user?.email!
         }
     })
-    
+    console.log(Profile)
+    return Profile
    }
    catch{
     const newProfile = await prisma.profile.create({
@@ -26,5 +27,6 @@ export async function currProfile(session:Session){
         },
         
       })
+      return newProfile
    }
 }
