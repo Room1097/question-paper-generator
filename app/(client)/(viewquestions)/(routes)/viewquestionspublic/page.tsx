@@ -10,9 +10,7 @@ import { getServerSession } from "next-auth";
 
 export default async function Admin() {
   console.log("hello")
-  const session  = getServerSession();
-    //@ts-expect-error
-    const currUser = await currProfile(session)
+  const session  = await getServerSession();
     
 
 
@@ -40,10 +38,13 @@ export default async function Admin() {
                 (question) => (
                   <ViewQuestionCard
                     key={question.id}
+                    //@ts-expect-error
+                    questionId ={question.id}
                     subject={question.subject}
                     question={question.question}
                     marks={question.marks}
                     difficulty={question.difficulty}
+                    private = {question.isPrivate}
                   />
                 )
               )}

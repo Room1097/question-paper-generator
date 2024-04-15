@@ -12,9 +12,10 @@ const Profile = ()=>{
     
         const avatarUrl = session?.user?.image as string;
         return(
-            <div className="mt-5">
-                <Avatar src={avatarUrl}/>
-                 {session?.user?.name}
+            <div className="flex flex-col align-center">
+                <div className="self-center"><Avatar src={avatarUrl}/></div>
+                <div className="self-center">{session?.user?.name}</div>
+                 
             </div>  
         
         )

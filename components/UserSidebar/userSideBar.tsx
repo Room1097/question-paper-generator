@@ -82,6 +82,8 @@ const UserSideBar = () => {
         <Separator className="dark:bg-zinc-400 bg-zinc-700 w-11/12 mx-auto mb-12 mt-12" />
       </div>
       <Profile />
+
+      
       <Separator className="dark:bg-zinc-400 bg-zinc-700 mb-6" />
     </div>
   );
