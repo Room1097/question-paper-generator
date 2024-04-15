@@ -28,7 +28,7 @@ const UserSideBar = () => {
             variant="ghost"
             className="w-full text-md active:scale-95"
           >
-            Make a Paper
+            Random Generation
           </Button>
           <Button
             onClick={() => {
@@ -55,7 +55,7 @@ const UserSideBar = () => {
             variant="ghost"
             className="w-full text-md active:scale-95"
           >
-            View Question
+           Your Questions
           </Button>
           <Button
             onClick={() => {
@@ -64,16 +64,26 @@ const UserSideBar = () => {
             variant="ghost"
             className="w-full text-md active:scale-95"
           >
-            View public Question
+            Community Question
+          </Button>
+          <Button
+            onClick={() => signOut()}
+            variant="ghost"
+            className="w-full text-md active:scale-95"
+          >
+            Sign Out
+          </Button>
+          <Button
+            onClick={() => {
+              router.push("/");
+            }}
+            variant="ghost"
+            className="w-full text-md active:scale-95"
+          >
+            Verification Portal
           </Button>
         </div>
-        <Button
-          onClick={() => signOut()}
-          variant="ghost"
-          className="w-full text-md active:scale-95"
-        >
-          Sign Out
-        </Button>
+
         <Separator className="dark:bg-zinc-400 bg-zinc-700 w-11/12 mx-auto mb-12" />
         <div className="flex gap-8 items-center justify-center">
           Theme Toggle
@@ -83,7 +93,6 @@ const UserSideBar = () => {
       </div>
       <Profile />
 
-      
       <Separator className="dark:bg-zinc-400 bg-zinc-700 mb-6" />
     </div>
   );
