@@ -39,13 +39,13 @@ export default async function Admin() {
               {questions.filter((item) => item.subjectId === elem.id).map(
                 (question) => (
                   <ViewQuestionCard
-                    key={question.id}
-                    questionId ={question.id}
-                    subject={elem.name}
-                    question={question.description}
-                    marks={question.marks}
-                    difficulty={question.difficulty}
-                    private = {question.isPrivate}
+                  key={question.id}
+                  questionId={question.id}
+                  subject={elem.name}
+                  question={question.description}
+                  marks={question.marks}
+                  difficulty={question.difficulty}
+                  isPrivate={question.isPrivate}
                   />
                 )
               )}

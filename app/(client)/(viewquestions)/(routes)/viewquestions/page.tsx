@@ -10,7 +10,7 @@ import { getServerSession } from "next-auth";
 import { Session } from "inspector";
 
 export default async function Admin() {
-  console.log("hello")
+  // console.log("hello")
   const session  = await getServerSession().then((result)=>{
     return(result)
   }).catch((err=>{
@@ -55,12 +55,12 @@ export default async function Admin() {
                 (question) => (
                   <ViewQuestionCard
                     key={question.id}
-                    questionId ={question.id}
+                    questionId={question.id}
                     subject={elem.name}
                     question={question.description}
                     marks={question.marks}
                     difficulty={question.difficulty}
-                    private = {question.isPrivate}
+                    isPrivate={question.isPrivate}
                   />
                 )
               )}
