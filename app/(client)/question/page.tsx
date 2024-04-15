@@ -40,6 +40,7 @@ export default async function Admin() {
           </CardContent>
         </Card>
       </div>
+      
     </div>
   );
 }
