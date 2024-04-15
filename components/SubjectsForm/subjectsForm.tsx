@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { z } from "zod";
-
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -32,11 +32,13 @@ const SubjectsForm = () => {
   });
 
 
+  const router = useRouter();
   async function onSubmit(values: z.infer<typeof subjectSchema>) {
     try {
       await axios.post("/api/subject", values);
       form.reset();
-      redirect("/viewquestion");
+      router.refresh()
+      // redirect("/viewquestion");
     } catch (error) {
       console.log(error);
     }

@@ -7,7 +7,10 @@ export async function POST(Request : Request) {
     try {
         const req = await Request.json();
         const session=await getServerSession();
-        //@ts-expect-error
+        if (!session) {
+          return new NextResponse("Unauthorised",{status:400});
+        }
+        
         const profile = await currProfile(session).then(
             (result)=>{
               console.log(result)
