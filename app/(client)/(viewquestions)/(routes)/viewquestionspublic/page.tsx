@@ -10,7 +10,7 @@ import { getServerSession } from "next-auth";
 
 export default async function Admin() {
   console.log("hello")
-  const session  = getServerSession();
+  const session  = await getServerSession();
     //@ts-expect-error
     const currUser = await currProfile(session)
     
@@ -31,17 +31,17 @@ export default async function Admin() {
       </h1>
       <Separator />
       <div className="flex flex-col">
-        {Subjects.map((elem) => (
+        {subjects.map((elem) => (
           <div key={elem.id} className="mt-8 flex flex-col">
             <h2 className="text-3xl font-bold capitalize pb-2">{elem.name}</h2>
             <Separator className="p-[1px]"/>
             <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {QuestionDB.filter((item) => item.subject === elem.name).map(
+              {questions.filter((item) => item.subjectId === elem.id).map(
                 (question) => (
                   <ViewQuestionCard
                     key={question.id}
-                    subject={question.subject}
-                    question={question.question}
+                    subject={elem.name}
+                    question={question.description}
                     marks={question.marks}
                     difficulty={question.difficulty}
                   />
