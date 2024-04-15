@@ -1,10 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Separator } from "../ui/separator";
-const Header = () => {
+
+const Header = ({ children }: { children: ReactNode }) => {
   return (
     <div>
-      <h1 className="text-3xl font-bold pl-16 pt-4">Admin Page</h1>
-      <Separator className="w-[80vw] mt-2 p-[1px]"/>
+      <h1 className="text-4xl mb-4">{children}</h1>
+      <Separator />
     </div>
   );
 };
