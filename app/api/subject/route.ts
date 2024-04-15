@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function POST(Request : Request) {
     try {
         const req = await Request.json();
-        const session=getServerSession();
+        const session=await getServerSession();
         //@ts-expect-error
         const profile = currProfile(session);
         const subject = await prisma.subject.create({
