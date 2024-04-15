@@ -7,14 +7,16 @@ import { currProfile } from "@/lib/current-profile";
 import { useSession } from "next-auth/react";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
+import { Session } from "inspector";
 
 export default async function Admin() {
   console.log("hello")
-  const session  = getServerSession().then((result)=>{
+  const session  = await getServerSession().then((result)=>{
     return(result)
   }).catch((err=>{
     console.log(err)
   }));
+  // console.log(session)
     //@ts-expect-error
     
     const currUser = await currProfile(session).then(
