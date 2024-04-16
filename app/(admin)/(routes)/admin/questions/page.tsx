@@ -15,7 +15,7 @@ export default async function AdminQuestions() {
   return (
     <div className="flex flex-col gap-8">
       <Header>Questions</Header>
-      <div>
+      <div className="grid grid-cols-2 gap-6">
         {questions.map((elem)=>(
           <QuestionCard
           key={elem.id}
