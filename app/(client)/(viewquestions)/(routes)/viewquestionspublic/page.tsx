@@ -33,14 +33,13 @@ export default async function Admin() {
               {QuestionDB.filter((item) => item.subject === elem.name).map(
                 (question) => (
                   <ViewQuestionCard
-                    key={question.id}
-                    //@ts-expect-error
-                    questionId ={question.id}
-                    subject={question.subject}
-                    question={question.question}
-                    marks={question.marks}
-                    difficulty={question.difficulty}
-                    isPrivate = {false}
+                  key={question.id}
+                  questionId={question.id}
+                  subject={elem.name}
+                  question={question.description}
+                  marks={question.marks}
+                  difficulty={question.difficulty}
+                  isPrivate={question.isPrivate}
                   />
                 )
               )}

@@ -52,13 +52,12 @@ export default async function Admin() {
                 (question) => (
                   <ViewQuestionCard
                     key={question.id}
-                    questionId ={question.id}
+                    questionId={question.id}
                     subject={elem.name}
                     question={question.description}
                     marks={question.marks}
                     difficulty={question.difficulty}
-                    isPrivate = {question.isPrivate}
-                    
+                    isPrivate={question.isPrivate}
                   />
                 )
               )}

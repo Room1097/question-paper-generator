@@ -12,35 +12,35 @@ import { currProfile } from "@/lib/current-profile";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { SubjectType } from "@/components/AddQuestionForm/addQuestionForm";
+import EditQuestionForm from "@/components/AddQuestionForm/edit-question";
 
 
-export default async function Admin() {
+export default async function Admin( { params }: { params: { id: string } } ) {
   const session  = getServerSession();
-    //@ts-expect-error
-    const currUser = currProfile(session)
+
     const subjects = await prisma.subject.findMany();
+    console.log(params.id)
     // subjects: JSON.parse(JSON.stringify(subjects))
 
   return (
     <div className="flex gap-8 pl-16 flex-col items-center pt-12 w-full h-screen">
       <h1 className="text-3xl w-full text-left pl-[20rem]">
-        Add Questions Page
+        Edit Questions Page
       </h1>
       <Separator />
       <div>
         <Card className="w-[60vw] rounded-sm">
           <CardHeader>
-            <CardTitle>Add Question</CardTitle>
+            <CardTitle>Edit Question</CardTitle>
             <CardDescription>
-              Add a Question by filling the given fields.
+              Edit the Question by filling the given fields.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <AddQuestionForm subjects = {subjects}/>
+            <EditQuestionForm subjects = {subjects} questionId={params.id}/>
           </CardContent>
         </Card>
       </div>
-      
     </div>
   );
 }
