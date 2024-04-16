@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import {
   Card,
@@ -8,42 +7,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import Link from "next/link";
-import { PencilIcon, TrashIcon } from "lucide-react";
-import axios from "axios";
-
-// Edit div
-function UpdateQuestion({ id }: { id: string }) {
-  return (
-    <Link
-      href={`/viewquestions/${id}/edit`}
-      className="rounded-md border p-2 hover:bg-white hover:text-black ml-5"
-    >
-      <PencilIcon className="w-5" />
-    </Link>
-  );
-}
-
-async function DeleteQuestion({
-  question,
-}: {
-  question: { questionId: string; subject: string };
-}) {
-  async function deleteQuestionButton(){
-    try {
-      await axios.delete(`/api/question`, {data: question});
-
-      console.log("deleted question")
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  return (
-    <div className="rounded-md border p-2 hover:bg-red-700 hover:text-white" onClick={deleteQuestionButton} >
-      <TrashIcon className="w-5" />
-    </div>
-  );
-}
+import { DeleteQuestion, UpdateQuestion } from "./buttons";
 
 const ViewQuestionCard: React.FC<{
   questionId: string;
