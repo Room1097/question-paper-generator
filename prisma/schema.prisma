@@ -7,10 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  VERIFIED_USER
-}
+// enum Role {
+//   USER
+//   VERIFIED_USER
+// }
 
 enum Difficulty {
   EASY
@@ -30,7 +30,7 @@ model Profile {
   name       String
   imageUrl   String
   email      String   @unique
-  role       Role     @default(USER)
+  // role       Role     @default(USER)
   createdAt  DateTime @default(now())
   upadatedAt DateTime @updatedAt
   status     Status   @default(NA)
