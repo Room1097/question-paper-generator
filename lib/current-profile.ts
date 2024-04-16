@@ -6,7 +6,7 @@ export async function currProfile(session:Session){
 
    const user = session?.user;
     
-
+    console.log(session)
    try{
     const Profile = await prisma.profile.findUniqueOrThrow({
         where:{
@@ -17,6 +17,7 @@ export async function currProfile(session:Session){
     return Profile
    }
    catch{
+    console.log("New Profile being generated...")
     const newProfile = await prisma.profile.create({
         data: { 
             userId  : crypto.randomUUID() ,
