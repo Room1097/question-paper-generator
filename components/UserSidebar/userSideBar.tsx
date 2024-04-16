@@ -75,7 +75,7 @@ const UserSideBar = () => {
           </Button>
           <Button
             onClick={() => {
-              router.push("/");
+              router.push("/verificationportal");
             }}
             variant="ghost"
             className="w-full text-md active:scale-95"
