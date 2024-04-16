@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 // Define type for subjects
 export type SubjectType = {
@@ -51,10 +52,12 @@ export default function AddQuestionForm({
     },
   });
 
+  const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       console.log(values);
       await axios.post("/api/question", values);
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
