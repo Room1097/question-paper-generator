@@ -22,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { Question } from "@prisma/client";
 // Define type for subjects
 export type SubjectType = {
   id: string;
@@ -30,37 +30,41 @@ export type SubjectType = {
 };
 
 export default function EditQuestionForm({
-  subjects
-  ,questionId
+  subjects,
+  question
 }: {
   subjects: SubjectType[];
-  questionId: string
+  question: Question
 }) {
+  
   const formSchema = z.object({
     description: z.string().min(2).max(1000),
     subjectId: z.string(),
     difficulty: z.enum(["EASY", "HARD", "MEDIUM"]),
     marks: z.coerce.number().nonnegative(),
+    questionId: z.any()
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      description: "",
-      subjectId: "",
-      difficulty: "EASY",
-      marks: 0,
+      description: question.description,
+      subjectId: question.subjectId,
+      difficulty: question.difficulty,
+      marks: question.marks,
+      questionId: question.id
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+ 
     try {
       console.log(values);
-      await axios.post("/api/question", values);
+      await axios.put("/api/question", values);
     } catch (error) {
       console.log(error);
     }
-    form.reset();
+ 
   }
 
   const handleCancel = () => {
@@ -79,7 +83,7 @@ export default function EditQuestionForm({
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder={questionId}
+                  defaultValue={question.description}
                   id="question"
                 />
               </FormControl>
@@ -98,7 +102,7 @@ export default function EditQuestionForm({
                   <div className="w-[15vw]">
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      defaultValue={question.subjectId}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select a Subject." />
@@ -126,7 +130,7 @@ export default function EditQuestionForm({
                 <FormControl>
                   <Input
                     {...field}
-                    placeholder="1,2,3,5, etc."
+                    defaultValue={question.marks}
                     className="w-[15vw]"
                   />
                 </FormControl>
@@ -144,7 +148,7 @@ export default function EditQuestionForm({
                   <div className="w-[15vw]">
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      defaultValue={question.difficulty}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select a difficulty." />
