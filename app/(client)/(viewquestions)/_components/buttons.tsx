@@ -2,8 +2,9 @@
 import axios from "axios";
 import { PencilIcon, TrashIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export function UpdateQuestion({ id }: { id: string }) {
+function UpdateQuestion({ id }: { id: string }) {
     return (
       <Link
         href={`/viewquestions/${id}/edit`}
@@ -13,8 +14,9 @@ export function UpdateQuestion({ id }: { id: string }) {
       </Link>
     );
   }
-  
-export  async function DeleteQuestion({
+
+const router = useRouter();
+async function DeleteQuestion({
     question,
   }: {
     question: { questionId: string; subject: string };
@@ -22,7 +24,7 @@ export  async function DeleteQuestion({
     async function deleteQuestionButton(){
       try {
         await axios.delete(`/api/question`, {data: question});
-  
+        router.refresh();
         console.log("deleted question")
       } catch (error) {
         console.log(error);

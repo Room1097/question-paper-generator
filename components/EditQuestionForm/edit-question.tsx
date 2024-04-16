@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Question } from "@prisma/client";
+import { useRouter } from "next/navigation";
 // Define type for subjects
 export type SubjectType = {
   id: string;
@@ -55,12 +56,16 @@ export default function EditQuestionForm({
       questionId: question.id
     },
   });
-
+  const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
- 
+    
     try {
       console.log(values);
       await axios.put("/api/question", values);
+      
+      router.refresh();
+      router.back();
+      
     } catch (error) {
       console.log(error);
     }
