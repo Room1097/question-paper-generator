@@ -7,10 +7,10 @@ export default function AdminLayout({
 }>) {
   return (
     <div className="flex">
+      <div className="h-full w-72 fixed inset-y-0 flex flex-col z-30">
         <SideMenu />
-      <div className="container my-6">
-        {children}
-        </div>
+      </div>
+      <div className="container  pl-[18rem] my-6">{children}</div>
     </div>
   );
 }

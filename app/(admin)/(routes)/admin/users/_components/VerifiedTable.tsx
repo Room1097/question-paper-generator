@@ -9,7 +9,6 @@ import {
 import { Avatar } from "@nextui-org/avatar";
 import { MoreVertical } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,25 +23,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 
 import { prisma } from "@/lib/prisma";
 
-const UserTable = async () => {
+const VerifiedTable = async () => {
   const userArray = await prisma.profile.findMany({
     where: {
-      status: "NA",
+      status: "VERIFIED"
     },
   });
-
   console.log(userArray);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Users Table</CardTitle>
+        <CardTitle>Verified Users Table</CardTitle>
         <CardDescription>
-          View and Manage all the current users on Q.P.G.
+          View and Manage all the verified users on Q.P.G.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -86,7 +83,7 @@ const UserTable = async () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem asChild>
-                        <Link href={``}>Edit User Role</Link>
+                        <Link href={``}>Revoke Verification</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link href={``}>Delete User</Link>
@@ -103,4 +100,4 @@ const UserTable = async () => {
   );
 };
 
-export default UserTable;
+export default VerifiedTable;

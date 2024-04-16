@@ -28,10 +28,10 @@ import { Input } from "@/components/ui/input";
 
 import { prisma } from "@/lib/prisma";
 
-const UserTable = async () => {
+const PendingTable = async () => {
   const userArray = await prisma.profile.findMany({
     where: {
-      status: "NA",
+      status: "PENDING",
     },
   });
 
@@ -40,9 +40,9 @@ const UserTable = async () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Users Table</CardTitle>
+        <CardTitle>Pending Applications Table</CardTitle>
         <CardDescription>
-          View and Manage all the current users on Q.P.G.
+          View and Manage all the Pending Applications for User Verification on Q.P.G.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -86,7 +86,10 @@ const UserTable = async () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuItem asChild>
-                        <Link href={``}>Edit User Role</Link>
+                        <Link href={``}>Give Verification</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href={``}>Reject Application</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link href={``}>Delete User</Link>
@@ -103,4 +106,4 @@ const UserTable = async () => {
   );
 };
 
-export default UserTable;
+export default PendingTable;
