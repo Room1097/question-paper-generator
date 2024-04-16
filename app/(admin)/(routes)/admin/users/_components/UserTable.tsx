@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -25,25 +26,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { formatDate } from "@/lib/formatters";
 
-import { prisma } from "@/lib/prisma";
+import { Profile } from "@prisma/client";
+interface UserTableProps {
+  userArray: Profile[];
+  cardTitle: string;
+  cardDescription: string;
+}
 
-const UserTable = async () => {
-  const userArray = await prisma.profile.findMany({
-    where: {
-      status: "NA",
-    },
-  });
-
-  console.log(userArray);
-
+const UserTable = ({
+  userArray,
+  cardTitle,
+  cardDescription,
+}: UserTableProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Users Table</CardTitle>
-        <CardDescription>
-          View and Manage all the current users on Q.P.G.
-        </CardDescription>
+        <CardTitle>{cardTitle}</CardTitle>
+        <CardDescription>{cardDescription}</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>
@@ -55,7 +56,7 @@ const UserTable = async () => {
               <TableHead>ID</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
-              {/* <TableHead>Created At</TableHead> */}
+              <TableHead>Created At</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="w-0">
                 <span className="sr-only">Actions</span>
@@ -71,7 +72,7 @@ const UserTable = async () => {
                 <TableCell>{user.userId}</TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                {/* <TableCell><span></span></TableCell> */}
+                <TableCell>{formatDate(user.createdAt)}</TableCell>
                 <TableCell>
                   {user.status === "NA" && <h1>Not Applied</h1>}
                   {user.status === "PENDING" && <h1>Pending Approval</h1>}
@@ -84,14 +85,38 @@ const UserTable = async () => {
                       <MoreVertical />
                       <span className="sr-only">Actions</span>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                      <DropdownMenuItem asChild>
-                        <Link href={``}>Edit User Role</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link href={``}>Delete User</Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
+
+                    {user.status === "PENDING" && (
+                      <DropdownMenuContent>
+                        <DropdownMenuItem asChild>
+                          Give Verification
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          Reject Application
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    )}
+
+                    {user.status === "NA" && (
+                      <DropdownMenuContent>
+                        <DropdownMenuItem asChild>
+                          Give Verification
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    )}
+
+                    {user.status === "VERIFIED" && (
+                      <DropdownMenuContent>
+                        <DropdownMenuItem asChild>
+                          Revoke Verification
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    )}
                   </DropdownMenu>
                 </TableCell>
               </TableRow>
