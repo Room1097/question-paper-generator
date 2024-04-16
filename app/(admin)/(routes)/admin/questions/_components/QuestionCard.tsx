@@ -33,7 +33,7 @@ type QuestionCardProps = {
 function UpdateQuestion({ id }: { id: string }) {
   return (
     <Link
-      href={`/viewquestions/${id}/edit`}
+      href={`/admin/questions/${id}/edit`}
       className="rounded-md border p-2 active:scale-95"
     >
       <PencilIcon className="w-5 h-5" />
