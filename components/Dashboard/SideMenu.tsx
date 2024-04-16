@@ -9,16 +9,16 @@ const SideMenu = () => {
         <h3 className="text-sm underline">Admin</h3>
       </div>
       <Button variant="ghost" className="active:scale-95">
-        <Link className=" w-full" href="/admin/dashboard">Dashboard</Link>
+        <Link className="h-full w-full" href="/admin/dashboard">Dashboard</Link>
       </Button>
       <Button variant="ghost" className="active:scale-95">
-        <Link className=" w-full" href="/admin/questions">Questions</Link>
+        <Link className="h-full w-full" href="/admin/questions">Questions</Link>
       </Button>
       <Button variant="ghost" className="active:scale-95">
-        <Link className=" w-full" href="/admin/users">Users</Link>
+        <Link className="h-full w-full" href="/admin/users">Users</Link>
       </Button>
       <Button variant="ghost" className="active:scale-95">
-        <Link className=" w-full" href="/admin/verify">Verification</Link>
+        <Link className="h-full w-full" href="/admin/verify">Verification</Link>
       </Button>
     </div>
   );

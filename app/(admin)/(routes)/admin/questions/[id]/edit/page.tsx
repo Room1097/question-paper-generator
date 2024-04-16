@@ -12,12 +12,20 @@ import { currProfile } from "@/lib/current-profile";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { SubjectType } from "@/components/AddQuestionForm/addQuestionForm";
-import EditQuestionForm from "@/components/AddQuestionForm/edit-question";
+import EditQuestionForm from "@/components/EditQuestionForm/edit-question"
+import { notFound } from "next/navigation";
 
 
 export default async function Admin( { params }: { params: { id: string } } ) {
-  const session  = getServerSession();
-
+  const session  = await getServerSession();
+  const question = await prisma.question.findUnique({
+    where : {
+      id:params.id
+    }
+  })
+  if (!question){
+    return notFound();
+  }
     const subjects = await prisma.subject.findMany();
     console.log(params.id)
     // subjects: JSON.parse(JSON.stringify(subjects))
@@ -37,7 +45,7 @@ export default async function Admin( { params }: { params: { id: string } } ) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <EditQuestionForm subjects = {subjects} questionId={params.id}/>
+            <EditQuestionForm subjects = {subjects} question={question}/>
           </CardContent>
         </Card>
       </div>
