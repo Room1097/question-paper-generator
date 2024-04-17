@@ -23,7 +23,8 @@ export async function currProfile(session:Session){
             userId  : crypto.randomUUID() ,
             name     :  user?.name!,
             imageUrl  : user?.image!,
-            email: user?.email!
+            email: user?.email!,
+            verifyimageUrl : ""
           
         },
         
