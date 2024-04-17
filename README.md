@@ -2,6 +2,9 @@
 
 This is a question paper generator web application built using the following technologies:
 
+## Tech Stack:
+[![tech stack](https://skillicons.dev/icons?i=next,ts,tailwind,git,github,vercel,js)](https://skillicons.dev)
+
 - **Next.js**: A React framework for building server-side rendered and static web applications.
 - **Next Auth/AuthJS**: For authentication and authorization features.
 - **TypeScript**: For type safety and improved developer experience.
@@ -17,9 +20,16 @@ This is a question paper generator web application built using the following tec
 - CRUD operations for managing question papers.
 - Form validation using Zod.
 
+## Team
+- Yuvraj Chauhan, 202211098
+- Trijay Patel, 202211066
+- Saloni Shevde, 202211076
+- Srijan Sharma, 202211084
+- Sumedha Baghmar, 202211089
+
 ## Getting Started
 
-1. Clone the repository: `git clone <repository_url>`
+1. Clone the repository: `git clone https://github.com/Room1097/question-paper-generator`
 2. Install dependencies: `npm install`
 3. Configure environment variables.
 4. Start the development server: `npm run dev`
