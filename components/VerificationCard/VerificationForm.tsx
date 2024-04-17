@@ -26,30 +26,30 @@ import { currProfile } from "@/lib/current-profile";
 import axios from "axios";
 import { Profile } from "@prisma/client";
 
-const VerificationForm = (profile : {profile:Profile}) => {
-  
+import { useToast } from "@/components/ui/use-toast";
 
+const VerificationForm = (profile: { profile: Profile }) => {
   const name = profile.profile.name;
   const email = profile.profile.email;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: name || "", 
-      email: email || "", 
+      name: name || "",
+      email: email || "",
     },
   });
 
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const value1 = {
-      profileId : profile.profile.id,
-      status: "PENDING"
-    }
-    const newprofile=await axios.patch('/api/profile',value1)
+      profileId: profile.profile.id,
+      status: "PENDING",
+    };
+    const newprofile = await axios.patch("/api/profile", value1);
     form.reset();
-
   }
+
+  const { toast } = useToast();
 
   return (
     <Form {...form}>
@@ -86,7 +86,18 @@ const VerificationForm = (profile : {profile:Profile}) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Apply</Button>
+        <Button
+          type="submit"
+          onClick={() => {
+            toast({
+              title: "Form Submitted",
+              description:
+                "Your form has been submitted for Approval. Wait for further instructions.",
+            });
+          }}
+        >
+          Apply
+        </Button>
       </form>
     </Form>
   );

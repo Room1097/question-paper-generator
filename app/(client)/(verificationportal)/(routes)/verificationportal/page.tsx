@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+
 import VerificationForm from "@/components/VerificationCard/VerificationForm";
 
 import { Input } from "@/components/ui/input";
@@ -18,11 +19,11 @@ import { notFound } from "next/navigation";
 import { currProfile } from "@/lib/current-profile";
 
 export default async function VerificationPortal() {
-  const session= await getServerSession();
-  if(!session){
-    return notFound()
+  const session = await getServerSession();
+  if (!session) {
+    return notFound();
   }
-    const profile = await currProfile(session);
+  const profile = await currProfile(session);
   return (
     <div className="flex flex-col gap-8 pl-[20rem] pt-8">
       <Header>Verification Portal</Header>
@@ -38,7 +39,7 @@ export default async function VerificationPortal() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <VerificationForm profile={profile}/>
+              <VerificationForm profile={profile} />
             </CardContent>
           </Card>
         </div>
