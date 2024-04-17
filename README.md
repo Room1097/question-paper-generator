@@ -26,7 +26,7 @@ This is a question paper generator web application built using the following tec
 
 ## Selenium Testing
 
-In order to run Selenium tests, you must **first login with your IIITV institute ID in the project**.
+In order to run Selenium tests, you must **first login with your IIITV or IIITV-ICD institute ID in the project**.
 
 ### Using Selenium IDE
 
