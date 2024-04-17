@@ -9,8 +9,10 @@ import {
 } from "@/components/ui/table";
 import { Avatar } from "@nextui-org/avatar";
 import { MoreVertical } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Status } from "@prisma/client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +43,8 @@ const UserTable = ({
   cardTitle,
   cardDescription,
 }: UserTableProps) => {
+  const router = useRouter();
+
   return (
     <Card>
       <CardHeader>
@@ -66,7 +70,7 @@ const UserTable = ({
           </TableHeader>
           <TableBody>
             {userArray.map((user) => (
-              <TableRow>
+              <TableRow key={user.id}>
                 <TableCell>
                   <Avatar src={user.imageUrl} />
                 </TableCell>
@@ -87,58 +91,71 @@ const UserTable = ({
                       <span className="sr-only">Actions</span>
                     </DropdownMenuTrigger>
 
-                    {user.status === "PENDING" && (
+                    {user.status === Status.PENDING && (
                       <DropdownMenuContent>
-                        <DropdownMenuItem onClick={async()=>{
-                          const values = {
-                            profileId : user.id,
-                            status : 'VERIFIED'
-                          }
-                          await axios.patch('/api/profile',values)
-                        }} asChild>
+                        <DropdownMenuItem
+                          onClick={async () => {
+                            const values = {
+                              profileId: user.id,
+                              status: "VERIFIED",
+                            };
+                            await axios.patch("/api/profile", values);
+                            router.refresh();
+                          }}
+                        >
                           Give Verification
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={async()=>{
-                          const values = {
-                            profileId : user.id,
-                            status : 'NA'
-                          }
-                          await axios.patch('/api/profile',values)
-                        }} asChild>
+                        <DropdownMenuItem
+                          onClick={async () => {
+                            const values = {
+                              profileId: user.id,
+                              status: "NA",
+                            };
+                            await axios.patch("/api/profile", values);
+                            router.refresh();
+                          }}
+                        >
                           Reject Application
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
                       </DropdownMenuContent>
                     )}
 
-                    {user.status === "NA" && (
+                    {user.status === Status.NA && (
                       <DropdownMenuContent>
-                        <DropdownMenuItem onClick={async()=>{
-                          const values = {
-                            profileId : user.id,
-                            status : 'VERIFIED'
-                          }
-                        }} asChild>
+                        <DropdownMenuItem
+                          onClick={async () => {
+                            const values = {
+                              profileId: user.id,
+                              status: "VERIFIED",
+                            };
+                            await axios.patch("/api/profile", values);
+                            router.refresh();
+                          }}
+                        >
                           Give Verification
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
+                        <DropdownMenuItem>Delete User</DropdownMenuItem>
                       </DropdownMenuContent>
                     )}
 
-                    {user.status === "VERIFIED" && (
+                    {user.status === Status.VERIFIED && (
                       <DropdownMenuContent>
-                        <DropdownMenuItem onClick={async()=>{
-                          const values = {
-                            profileId : user.id,
-                            status : 'NA'
-                          }
-                          await axios.patch('/api/profile',values)
-                        }} asChild>
+                        <DropdownMenuItem
+                          onClick={async () => {
+                            const values = {
+                              profileId: user.id,
+                              status: "NA",
+                            };
+                            await axios.patch("/api/profile", values);
+                            router.refresh();
+                          }}
+                        >
                           Revoke Verification
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
+                        <DropdownMenuItem>Delete User</DropdownMenuItem>
                       </DropdownMenuContent>
                     )}
                   </DropdownMenu>
