@@ -21,17 +21,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { currProfile } from "@/lib/current-profile";
+import axios from "axios";
+import { Profile } from "@prisma/client";
 
-const VerificationForm = () => {
-  const { data: session } = useSession();
+const VerificationForm = (profile : {profile:Profile}) => {
+  
 
-  if (session) {
-    const profile = currProfile(session);
-  }
-  const name = session?.user?.name as string;
-  const email = session?.user?.email as string;
+  const name = profile.profile.name;
+  const email = profile.profile.email;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,9 +41,14 @@ const VerificationForm = () => {
   });
 
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const value1 = {
+      profileId : profile.profile.id,
+      status: "PENDING"
+    }
+    const newprofile=await axios.patch('/api/profile',value1)
+    form.reset();
 
-    
   }
 
   return (

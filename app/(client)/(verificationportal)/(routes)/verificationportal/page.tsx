@@ -13,8 +13,16 @@ import VerificationForm from "@/components/VerificationCard/VerificationForm";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Header from "@/components/Dashboard/Header";
+import { getServerSession } from "next-auth";
+import { notFound } from "next/navigation";
+import { currProfile } from "@/lib/current-profile";
 
-export default function VerificationPortal() {
+export default async function VerificationPortal() {
+  const session= await getServerSession();
+  if(!session){
+    return notFound()
+  }
+    const profile = await currProfile(session);
   return (
     <div className="flex flex-col gap-8 pl-[20rem] pt-8">
       <Header>Verification Portal</Header>
@@ -30,7 +38,7 @@ export default function VerificationPortal() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <VerificationForm />
+              <VerificationForm profile={profile}/>
             </CardContent>
           </Card>
         </div>

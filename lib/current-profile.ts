@@ -6,14 +6,14 @@ export async function currProfile(session:Session){
 
    const user = session?.user;
     
-    console.log(session)
+    // console.log(session)
    try{
     const Profile = await prisma.profile.findUniqueOrThrow({
         where:{
             email: user?.email!
         }
     })
-    console.log(Profile)
+    // console.log(Profile)
     return Profile
    }
    catch{
