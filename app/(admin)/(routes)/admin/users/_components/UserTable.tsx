@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { Avatar } from "@nextui-org/avatar";
 import { MoreVertical } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Status } from "@prisma/client";
@@ -43,6 +43,8 @@ const UserTable = ({
   cardTitle,
   cardDescription,
 }: UserTableProps) => {
+  const router = useRouter();
+
   return (
     <Card>
       <CardHeader>
@@ -98,6 +100,7 @@ const UserTable = ({
                               status: "VERIFIED",
                             };
                             await axios.patch("/api/profile", values);
+                            router.refresh();
                           }}
                         >
                           Give Verification
@@ -109,6 +112,7 @@ const UserTable = ({
                               status: "NA",
                             };
                             await axios.patch("/api/profile", values);
+                            router.refresh();
                           }}
                         >
                           Reject Application
@@ -126,6 +130,7 @@ const UserTable = ({
                               status: "VERIFIED",
                             };
                             await axios.patch("/api/profile", values);
+                            router.refresh();
                           }}
                         >
                           Give Verification
@@ -144,6 +149,7 @@ const UserTable = ({
                               status: "NA",
                             };
                             await axios.patch("/api/profile", values);
+                            router.refresh();
                           }}
                         >
                           Revoke Verification
