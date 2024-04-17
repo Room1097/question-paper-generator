@@ -29,6 +29,7 @@ import { Input } from "@/components/ui/input";
 import { formatDate } from "@/lib/formatters";
 
 import { Profile } from "@prisma/client";
+import axios from "axios";
 interface UserTableProps {
   userArray: Profile[];
   cardTitle: string;
@@ -88,10 +89,22 @@ const UserTable = ({
 
                     {user.status === "PENDING" && (
                       <DropdownMenuContent>
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuItem onClick={async()=>{
+                          const values = {
+                            profileId : user.id,
+                            status : 'VERIFIED'
+                          }
+                          await axios.patch('/api/profile',values)
+                        }} asChild>
                           Give Verification
                         </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuItem onClick={async()=>{
+                          const values = {
+                            profileId : user.id,
+                            status : 'NA'
+                          }
+                          await axios.patch('/api/profile',values)
+                        }} asChild>
                           Reject Application
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>Delete User</DropdownMenuItem>
@@ -100,7 +113,12 @@ const UserTable = ({
 
                     {user.status === "NA" && (
                       <DropdownMenuContent>
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuItem onClick={async()=>{
+                          const values = {
+                            profileId : user.id,
+                            status : 'VERIFIED'
+                          }
+                        }} asChild>
                           Give Verification
                         </DropdownMenuItem>
 
@@ -110,7 +128,13 @@ const UserTable = ({
 
                     {user.status === "VERIFIED" && (
                       <DropdownMenuContent>
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuItem onClick={async()=>{
+                          const values = {
+                            profileId : user.id,
+                            status : 'NA'
+                          }
+                          await axios.patch('/api/profile',values)
+                        }} asChild>
                           Revoke Verification
                         </DropdownMenuItem>
 
