@@ -1,10 +1,12 @@
-'use client'
+"use client";
 import React from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { useEdgeStore } from "@/lib/edgestore";
-const edgestore = useEdgeStore(); 
 const VerificationForm = () => {
+  const [file, setFile] = React.useState<File>();
+  const edgestore = useEdgeStore();
+
   return (
     <div className="">
       <form action="" className="flex flex-col gap-8">
@@ -25,12 +27,36 @@ const VerificationForm = () => {
               Degree or Diploma or Equivalent Certificate.
             </span>
           </Label>
-          <Input type="file" id="email" name="email" required />
+          <Input
+            type="file"
+            id="file"
+            name="file"
+            required
+            onChange={(e) => {
+              setFile(e.target.files?.[0]);
+            }}
+          />
         </div>
         <div className="dark:text-zinc-400">
           Note: All your documents will be private and would not be accessible
           by anyone else.
         </div>
+        <button
+          onClick={async () => {
+            if (file) {
+              const res = await edgestore.publicFiles.upload({
+                file,
+                onProgressChange: (progress: ProgressEvent) => {
+                  console.log(progress);
+                },
+              });
+
+              console.log(res);
+            }
+          }}
+        >
+          Upload
+        </button>
       </form>
     </div>
   );
