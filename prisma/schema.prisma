@@ -30,6 +30,7 @@ model Profile {
   name       String
   imageUrl   String
   email      String   @unique
+  verifyimageUrl String
   // role       Role     @default(USER)
   createdAt  DateTime @default(now())
   upadatedAt DateTime @updatedAt

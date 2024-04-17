@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import Provider from "@/components/SignIn/Provider";
 
 import UserSideBar from "@/components/UserSidebar/userSideBar";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,7 +34,10 @@ export default function RootLayout({
          
           
 <Provider >
+<EdgeStoreProvider>
+
           {children}
+</EdgeStoreProvider>
           </Provider>
         </ThemeProvider>
       </body>
